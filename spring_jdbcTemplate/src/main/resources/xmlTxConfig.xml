@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 加载资源文件 -->
     <bean id="propertyConfigurer"
@@ -50,17 +49,30 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
-    <!-- 第二步：开启事物的注解 -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!-- 第二步：配置事务增强 -->
+    <tx:advice id="txadvice" transaction-manager="transactionManager">
+        <!-- 做事务操作 -->
+        <tx:attributes>
+            <!-- 设置进行事务操作的匹配规则 -->
+            <tx:method name="account*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
 
-    <!-- 第三步：在业务层上添加一个注解  @Transactional -->
+    <!-- 第三步：配置切面 -->
+    <aop:config>
+        <!-- 切入点 -->
+        <aop:pointcut expression="execution(* com.github.service.UserService2.*(..))" id="pointcut1"/>
+        <!-- 切面 -->
+        <aop:advisor advice-ref="txadvice" pointcut-ref="pointcut1"/>
+    </aop:config>
+
 
     <!-- 创建service和dao对象，然后在service中注入dao对象 -->
     <bean id="userDao" class="com.github.dao.UserDao">
         <!-- 注入JdbcTemplate对象 -->
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
-    <bean id="userService" class="com.github.service.UserService">
+    <bean id="userService2" class="com.github.service.UserService2">
         <!-- 注入dao对象 -->
         <property name="userDao" ref="userDao"></property>
     </bean>

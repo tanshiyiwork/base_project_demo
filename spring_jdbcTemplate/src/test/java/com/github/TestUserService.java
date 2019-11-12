@@ -13,4 +13,11 @@ public class TestUserService {
         UserService service=(UserService) applicationContext.getBean("userService");
         service.add();
     }
+
+    @Test
+    public void testTx(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService service=(UserService) applicationContext.getBean("userService");
+        service.accountMoney();
+    }
 }

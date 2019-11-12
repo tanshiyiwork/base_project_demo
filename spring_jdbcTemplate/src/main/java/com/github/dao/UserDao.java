@@ -25,4 +25,19 @@ public class UserDao {
         jdbcTemplate.update(sql, 3,"李磊",2000);
 
     }
+
+    /**
+     * 做对数据库操作的方法，不写业务操作
+     */
+    //张三少钱方法
+    public void lessMoney(){
+        String sql="update user_balance set balance=balance-? where name=?";
+        jdbcTemplate.update(sql, 1000,"张三");
+    }
+
+    //李四多钱的方法
+    public void moreMoney(){
+        String sql="update user_balance set balance=balance+? where name=?";
+        jdbcTemplate.update(sql, 1000,"李四");
+    }
 }

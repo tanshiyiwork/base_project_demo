@@ -1,10 +1,9 @@
 package com.github.service;
 
 import com.github.dao.UserDao;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
-public class UserService {
+public class UserService2 {
+
     private UserDao userDao;
 
     public void setUserDao(UserDao userDao) {
