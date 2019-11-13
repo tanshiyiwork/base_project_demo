@@ -137,6 +137,25 @@
                 <version>${spring.version}</version>
             </dependency>
             <!-- springframe end -->
+
+            <!-- aop start -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>aopalliance</groupId>
+                <artifactId>aopalliance</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <!-- aop end -->
+
             <!-- hibernate beg -->
             <dependency>
                 <groupId>org.hibernate</groupId>

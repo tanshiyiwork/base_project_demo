@@ -54,7 +54,7 @@
         <!-- 做事务操作 -->
         <tx:attributes>
             <!-- 设置进行事务操作的匹配规则 -->
-            <tx:method name="account*" propagation="REQUIRED"/>
+            <tx:method name="account*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
         </tx:attributes>
     </tx:advice>
 
