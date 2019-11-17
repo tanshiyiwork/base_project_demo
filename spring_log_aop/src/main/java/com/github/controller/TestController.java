@@ -4,6 +4,7 @@ import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -20,5 +21,11 @@ public class TestController {
     public Dict test(String who) {
         log.error("sout log is error");
         return Dict.create().set("who", StrUtil.isBlank(who) ? "me" : who);
+    }
+
+    @RequestMapping("/say")
+    public void say() {
+        log.error("sout log is error");
+        System.out.println("controller say ============");
     }
 }

@@ -11,6 +11,7 @@
     <modules>
         <module>spring_jdbcTemplate</module>
         <module>spring_log_aop</module>
+        <module>spring_logback_demo</module>
     </modules>
 
     <!-- 项目信息 -->
@@ -104,11 +105,15 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>1.2.3</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-access</artifactId>
                 <version>1.2.3</version>
             </dependency>
             <!-- springframe start -->
